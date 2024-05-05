@@ -3,38 +3,37 @@ package service
 import (
 	"errors"
 	"log"
-	"orders_service/internal/database"
 	"orders_service/internal/models"
+	"orders_service/internal/repository"
 )
 
 type OrderService struct {
-	db    *database.Database
-	cache map[string]*models.Order
+	orderRepository repository.OrderRepository
+	cache           map[string]*models.Order
 }
 
-func NewOrderService(db *database.Database) *OrderService {
-	os := &OrderService{db: db, cache: map[string]*models.Order{}}
+func NewOrderService(r repository.OrderRepository) *OrderService {
+	os := &OrderService{orderRepository: r, cache: map[string]*models.Order{}}
 	os.loadCache()
 	return os
 }
 
 func (s OrderService) loadCache() {
-	orders := make([]models.Order, 0)
-
-	err := s.db.DB.Model(&orders).Select()
+	orders, err := s.orderRepository.FindAll()
 	if err != nil {
-		log.Println(err)
+		log.Println("failed to load cache", err)
+		return
 	}
 
 	for _, order := range orders {
-		s.cache[order.OrderUid] = &order
+		s.cache[order.OrderUid] = order
 	}
 
-	log.Println("Cache loading finished")
+	log.Println("cache loading finished")
 }
 
 func (s OrderService) Save(order *models.Order) error {
-	_, err := s.db.DB.Model(order).Insert()
+	err := s.orderRepository.Save(order)
 	if err != nil {
 		return err
 	}
@@ -47,7 +46,7 @@ func (s OrderService) FindById(id string) (*models.Order, error) {
 	order, ok := s.cache[id]
 
 	if !ok {
-		return nil, errors.New("not found")
+		return nil, errors.New("order not found")
 	}
 
 	return order, nil

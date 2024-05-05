@@ -7,23 +7,20 @@ import (
 	"orders_service/internal/models"
 )
 
-type Database struct {
+type PostgresDatabase struct {
 	DB *pg.DB
 }
 
-func NewDatabase() *Database {
-	db := pg.Connect(&pg.Options{
-		User:     "postgres",
-		Password: "1234",
-		Database: "postgres",
-	})
+func NewPostgresDatabase(options *pg.Options) *PostgresDatabase {
+	db := pg.Connect(options)
 
 	err := createSchema(db)
 	if err != nil {
 		log.Println(err)
+		return nil
 	}
-
-	return &Database{DB: db}
+	log.Println("successfully connected to database")
+	return &PostgresDatabase{DB: db}
 }
 
 func createSchema(db *pg.DB) error {
@@ -32,6 +29,5 @@ func createSchema(db *pg.DB) error {
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
