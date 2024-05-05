@@ -1,0 +1,7 @@
+.wrapper {
+    display: flex;
+}
+.block {
+    display: inline-block;
+    margin-right: 50px;
+}

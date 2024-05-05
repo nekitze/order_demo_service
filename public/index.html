@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Data Display</title>
+</head>
+<body>
+<form id="orderForm">
+    <label for="orderId">Order ID:</label>
+    <input type="text" id="orderId" name="orderId" required>
+    <button type="submit">Get Order Details</button>
+    <link rel="stylesheet" href="/static/css/style.css">
+</form>
+
+<h1>Order Details</h1>
+
+<div class="wrapper">
+    <div class="block">
+        <h2>General</h2>
+        <p><strong>Order UID:</strong> <span id="orderUid"></span></p>
+        <p><strong>Track Number:</strong> <span id="trackNumber"></span></p>
+        <p><strong>Entry:</strong> <span id="entry"></span></p>
+        <p><strong>Locale:</strong> <span id="locale"></span></p>
+        <p><strong>InternalSignature:</strong> <span id="internalSignature"></span></p>
+        <p><strong>CustomerId:</strong> <span id="customerId"></span></p>
+        <p><strong>DeliveryService:</strong> <span id="deliveryService"></span></p>
+        <p><strong>Shardkey:</strong> <span id="shardkey"></span></p>
+        <p><strong>SmId:</strong> <span id="smId"></span></p>
+        <p><strong>DateCreated:</strong> <span id="dateCreated"></span></p>
+        <p><strong>OofShard:</strong> <span id="oofShard"></span></p>
+    </div>
+    <div class="block">
+        <h2>Delivery Details</h2>
+        <p><strong>Name:</strong> <span id="deliveryName"></span></p>
+        <p><strong>Phone:</strong> <span id="deliveryPhone"></span></p>
+        <p><strong>Zip Code:</strong> <span id="deliveryZip"></span></p>
+        <p><strong>City:</strong> <span id="deliveryCity"></span></p>
+        <p><strong>Address:</strong> <span id="deliveryAddress"></span></p>
+        <p><strong>Region:</strong> <span id="deliveryRegion"></span></p>
+        <p><strong>Email:</strong> <span id="deliveryEmail"></span></p>
+    </div>
+    <div class="block">
+        <h2>Payment Details</h2>
+        <p><strong>Transaction ID:</strong> <span id="transactionId"></span></p>
+        <p><strong>Request ID:</strong> <span id="requestId"></span></p>
+        <p><strong>Currency:</strong> <span id="currency"></span></p>
+        <p><strong>Provider:</strong> <span id="provider"></span></p>
+        <p><strong>Amount:</strong> <span id="amount"></span></p>
+        <p><strong>Payment Date:</strong> <span id="paymentDate"></span></p>
+        <p><strong>Bank:</strong> <span id="bank"></span></p>
+        <p><strong>Delivery Cost:</strong> <span id="deliveryCost"></span></p>
+        <p><strong>Goods Total:</strong> <span id="goodsTotal"></span></p>
+        <p><strong>Custom Fee:</strong> <span id="customFee"></span></p>
+    </div>
+</div>
+
+<h2>Items</h2>
+<div id="itemsList"></div>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>
