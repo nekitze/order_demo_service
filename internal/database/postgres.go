@@ -5,14 +5,20 @@ import (
 	"github.com/go-pg/pg/v10/orm"
 	"log"
 	"orders_service/internal/models"
+	"os"
 )
 
 type PostgresDatabase struct {
 	DB *pg.DB
 }
 
-func NewPostgresDatabase(options *pg.Options) *PostgresDatabase {
-	db := pg.Connect(options)
+func NewPostgresDatabase() *PostgresDatabase {
+	db := pg.Connect(&pg.Options{
+		Addr:     os.Getenv("DB_ADDRESS"),
+		User:     os.Getenv("DB_USER"),
+		Password: os.Getenv("DB_PASSWORD"),
+		Database: os.Getenv("DB_NAME"),
+	})
 
 	err := createSchema(db)
 	if err != nil {

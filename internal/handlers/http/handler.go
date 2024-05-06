@@ -44,7 +44,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		}
 	}
 
-	router.LoadHTMLGlob("public/*.html")
+	router.LoadHTMLGlob("static/*.html")
 	router.StaticFS("/static/js", http.Dir("./static/js"))
 	router.StaticFS("/static/css", http.Dir("./static/css"))
 

@@ -14,12 +14,9 @@ func main() {
 	}
 	defer nc.Close()
 
-	fmt.Println("Connected to nats stream. Type 'q' to exit")
-
 	for {
 		var input string
 		fmt.Println("Path to .json file:")
-
 		fmt.Scanln(&input)
 
 		if input == "q" {
