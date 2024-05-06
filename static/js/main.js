@@ -65,7 +65,7 @@ function fetchData(data) {
     itemsList.innerHTML = ''
     data.items.forEach(item => {
         const itemBlock = document.createElement('div');
-        itemBlock.className = 'itemBlock';
+        itemBlock.className = 'item';
 
         const chrtIdElement = document.createElement('p');
         chrtIdElement.textContent = `ChrtId: ${item.chrt_id}`;
