@@ -12,3 +12,5 @@
 1. Run service ```docker compose up```
 
 2. Run nats publisher ```go run cmd/publisher```
+
+Service available on http://localhost:8080/ by default
